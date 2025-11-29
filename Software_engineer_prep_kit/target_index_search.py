@@ -18,8 +18,21 @@ import sys
 #
 
 def binarySearch(nums, target):
-    if target in nums:
-        return nums.index(target)
+    # if target in nums:
+    #     return nums.index(target)
+    # return -1
+    
+    #if binary search is needed
+    low = 0
+    high = len(nums) - 1
+    while(low <= high):
+        mid = (low+high)//2
+        if target == nums[mid]:
+            return mid
+        elif nums[mid] < target:
+            low = mid + 1
+        else:
+            high = mid - 1
     return -1
 
 if __name__ == '__main__':
