@@ -17,17 +17,22 @@ import sys
 
 def generateAngleBracketSequences(n):
     result = []
+    sequence = []
     
-    def backtracker(string, open_count, close_count):
-        if len(string) == 2*n:
-            result.append(string)
+    def backtracker(open_count, close_count):
+        if len(sequence) == 2*n:
+            result.append("".join(sequence))
             return
         if open_count < n:
-            backtracker(string + '<', open_count + 1, close_count)
+            sequence.append('<')
+            backtracker(open_count + 1, close_count)
+            sequence.pop()
         if close_count < open_count:
-            backtracker(string + '>', open_count, close_count + 1)
+            sequence.append('>')
+            backtracker(open_count, close_count + 1)
+            sequence.pop()
     
-    backtracker('', 0, 0)
+    backtracker(0, 0)
     return result
 
 if __name__ == '__main__':
